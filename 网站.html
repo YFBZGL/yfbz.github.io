@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迎风布阵的斗罗攻略</title>
+    <style>
+        .has-submenu { position: relative; }
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  padding-left: 1rem;
+}
+.has-submenu:hover .submenu { max-height: 500px; }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+            background: linear-gradient(160deg, #2c3e50 0%, #1a252f 100%);
+            padding-top: 20px;
+            z-index: 100;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin: 1.5rem 0;
+        }
+
+        .nav-item a {
+            color: #bdc3c7;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-item a:hover {
+            background: rgba(231, 76, 60, 0.2);
+            transform: translateX(10px);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            margin-left: 200px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 尘心对决大图 */
+        .hero-image {
+            width: 100%;
+            height: 100vh;
+            background: 
+  linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+  url('https://gd-hbimg.huaban.com/a775b017b99cbb2627d47f5c31082dde5cde22c07587a-vdQMkC_fw658webp') center/cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 动态光效 */
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 45%,
+                rgba(231, 76, 60, 0.2) 50%,
+                transparent 55%);
+            animation: lightFlow 6s infinite linear;
+        }
+
+        /* 标题文字 */
+        .hero-text {
+            color: white;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* 动画效果 */
+        @keyframes lightFlow {
+            0% { transform: translate(-50%, -50%) rotate(45deg); }
+            100% { transform: translate(50%, 50%) rotate(45deg); }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+            to { text-shadow: 0 0 20px rgba(231, 76, 60, 0.8), 
+                            0 0 30px rgba(231, 76, 60, 0.6); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                transition: all 0.3s;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <ul class="nav-list">
+           <li class="nav-item has-submenu">
+  <a href="#huntshi">魂师档案 ▼</a>
+  <ul class="submenu">
+    <li><a href="https://mp.weixin.qq.com/s/VBcuAT0_OV7ijIm-20CheA" 
+   target="_blank" 
+   rel="noopener noreferrer">唐三</a>
+    <li><a href="articles/xiaowu.html">小舞</a></li>
+    <li><a href="articles/chenxin.html">尘心</a></li>
+  </ul>
+</li>
+            <li class="nav-item"><a href="#hungu">魂骨图鉴</a></li>
+            <li class="nav-item"><a href="#huodong">活动攻略</a></li>
+            <li class="nav-item"><a href="#ganhuo">干货攻略</a></li>
+            <li class="nav-item"><a href="#gonglue">阵容搭配</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>迎风布阵的斗罗攻略</h1>
+                <p>七杀惊雷起，一剑破长空</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 移动端菜单切换
+        if (window.innerWidth <= 768) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuToggle = document.createElement('div');
+            menuToggle.innerHTML = '☰';
+            menuToggle.style.cssText = `
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                color: white;
+                font-size: 1.5rem;
+                z-index: 200;
+                cursor: pointer;
+                text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            `;
+            document.body.appendChild(menuToggle);
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.style.width = sidebar.style.width === '200px' ? '0' : '200px';
+            });
+        }
+    </script>
+</body>
+</html>
